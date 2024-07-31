@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <!-- Source directory -->
+    <classpathentry kind="src" path="src"/>
+
+    <!-- JRE system library -->
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+
+    <!-- External JAR file in the lib directory -->
+    <classpathentry kind="lib" path="lib/postgresql-42.7.3.jar"/>
+
+    <!-- Output directory -->
+    <classpathentry kind="output" path="bin"/>
+</classpath>
