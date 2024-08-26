@@ -1,4 +1,9 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.*;
 
 public class LibraryModel {
@@ -66,6 +71,28 @@ public class LibraryModel {
 
     public String deleteBook(int isbn) {
         return bookModel.deleteBook(isbn);
+    }
+
+    public void executeSqlFromFile(String filePath) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (line.trim().isEmpty() || line.trim().startsWith("--")) {
+                    continue; // Skip empty lines and comments
+                }
+                executeSql(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle file reading exceptions
+        }
+    }
+
+    private void executeSql(String sql) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle SQL execution exceptions
+        }
     }
 
 }
