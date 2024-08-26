@@ -19,6 +19,12 @@ public class LibraryModel {
         this.authorModel = new AuthorModel(parent, conn);
         this.customerModel = new CustomerModel(parent, conn);
         this.loaningModel = new LoaningModel(parent, conn);
+
+        initialiseDatabase();
+    }
+
+    public void initialiseDatabase() {
+        executeSqlFromFile("../../Data/library.data");
     }
 
     public String bookLookup(int isbn) {
